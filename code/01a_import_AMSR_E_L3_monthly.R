@@ -1,15 +1,4 @@
-library(rgdal)
-library(gdalUtils)
-library(raster)
-library(terra)
-library(data.table)
-library(viridis)
-library(ggplot2)
-library(tidyverse)
-library(lubridate)
-library(sf)
-library(gsubfn)
-
+source('./source/libs.R')
 
 # import, crop and save into data.table formats ---------------------------
 
@@ -27,7 +16,7 @@ amsr_cz <- lapply(amsr_nh, sapply, function(x) crop(x, cz_shp))
 unls_amsr_cz <- unlist(amsr_cz)
 amsr_cz_dt <- lapply(unls_amsr_cz, function(a) as.data.table(a, xy = TRUE))
 
-#date
+## create a time series (dates form the files)
 
 date_dt <- ym(strapplyc(amsr_files[[1]], "(\\d+)\\.", simplify = TRUE))
 dates <- lapply(amsr_files, function(x) ym(strapplyc(x, "(\\d+)\\.", simplify = TRUE)))
