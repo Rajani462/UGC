@@ -6,8 +6,8 @@ source('./source/palettes.R')
 # read the raw datasets ---------------------------------------------------
 
 
-amsr_swe_cz <- readRDS('./data/database/amsr_swe.Rds')
-cz_shp <- readOGR("./data/shape_file/Czech/Export_czaele.shp")
+amsr_swe_cz <- readRDS('./data/database/amsr_swe_wgs84.Rds')
+cz_shp <- readOGR("./data/shape_file/Czech/SPH_KRAJ.shp")
 
 ### temporal plot or time series plot
 
@@ -18,7 +18,7 @@ ggplot(amsr_mean, aes(z, mean_value)) +
   labs(x = "Time", y = "SWE (mm)") + 
   theme_generic
 
-ggsave("results/figures/swe_amsr_timeseries.png",
+ggsave("results/figures/swe_amsr_timeseries_wgs84.png",
        width = 8.2, height = 5.3, units = "in", dpi = 600)
 
 ### spatial plot
@@ -35,7 +35,7 @@ ggplot(amsr_spatial) +
   labs(x = "Longitude", y = "Latitude", fill = "SWE (mm)") + 
   theme_generic
 
-ggsave("results/figures/swe_amsr_spatil.png",
+ggsave("results/figures/swe_amsr_spatil_wgs84.png",
        width = 8.2, height = 5.3, units = "in", dpi = 600)
 
 ##########################################################################################
